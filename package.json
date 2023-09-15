@@ -1,0 +1,25 @@
+{
+  "name": "nodejsbyexample",
+  "version": "1.0.0",
+  "description": "NodeJS by example for nodejsByExample.dev",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MattBidewell/nodejsByExample.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MattBidewell/nodejsByExample/issues"
+  },
+  "homepage": "https://github.com/MattBidewell/nodejsByExample#readme",
+  "dependencies": {
+    "highlight.js": "^11.8.0",
+    "pug": "^3.0.2"
+  }
+}
