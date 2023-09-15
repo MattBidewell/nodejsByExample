@@ -1,0 +1,19 @@
+doctype html
+html
+  include ./head.pug
+  body
+    main
+      include ./header.pug
+      table
+        each content in contents
+          tr
+            if content.comment
+              td #[p #[em= content.comment]]
+            else
+              td
+            if content.code
+              td #[pre #[code.hljs!= content.code]]
+            else
+              td
+
+      include ./footer.pug
