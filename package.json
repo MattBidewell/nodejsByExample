@@ -4,7 +4,8 @@
   "description": "NodeJS by example for nodejsByExample.dev",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate": "node ./tools/generate.js"
   },
   "type": "module",
   "repository": {

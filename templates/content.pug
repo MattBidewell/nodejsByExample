@@ -5,7 +5,18 @@ html
     main
       include ./header.pug
       table
-        each content in contents
+        each content in contents.code
+          tr
+            if content.comment
+              td #[p #[em= content.comment]]
+            else
+              td
+            if content.code
+              td #[pre #[code.hljs!= content.code]]
+            else
+              td
+      table
+        each content in contents.script
           tr
             if content.comment
               td #[p #[em= content.comment]]

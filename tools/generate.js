@@ -25,8 +25,6 @@ function renderSinglePage(filePath, contents, filenameOverride) {
 
 function renderCodePages() {
 
-  // read contents of examples directory nested directories
-  // const contents = [];
   const dirs = fs.readdirSync(examplesDir, { withFileTypes: true }).filter(dirent => dirent.isDirectory())
 
   for (const dir of dirs) {
@@ -41,7 +39,7 @@ function renderCodePages() {
       script: fs.readFileSync(path.join(dirPath, scriptFile.name), "utf8"),
     }
 
-    const contents = [];
+    const contents = {code: [], script: []};
     // read the code file and split it into sections
     const codeSections = content.code.split("\n\n\n");
 
@@ -56,7 +54,7 @@ function renderCodePages() {
           code += line + "\n";
         }
       }
-      contents.push({
+      contents.code.push({
         comment,
         code: hljs.highlight(code, { language: "javascript" }).value,
       });
@@ -75,7 +73,7 @@ function renderCodePages() {
           script += line + "\n";
         }
       }
-      contents.push({ // I think this is the wrong way round
+      contents.script.push({ // I think this is the wrong way round
         comment,
         code: hljs.highlight(script, { language: "shell", ignoreIllegals: true }).value,
       });
