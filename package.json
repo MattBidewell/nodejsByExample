@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "generate": "node ./tools/generate.js",
+    "generate": "rm -rf public/*.html && node ./tools/generate.js",
     "dev": "node ./tools/server.js"
   },
   "type": "module",
