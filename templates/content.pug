@@ -5,10 +5,10 @@ html
     main
       include ./header.pug
       table
-        each content in contents.code
+        each content in data.contents.code
           tr
             if content.comment
-              td #[p #[em= content.comment]]
+              td #[p!= content.comment]
             else
               td
             if content.code
@@ -16,10 +16,10 @@ html
             else
               td
       table
-        each content in contents.script
+        each content in data.contents.script
           tr
             if content.comment
-              td #[p #[em= content.comment]]
+              td #[p!= content.comment]
             else
               td
             if content.code
