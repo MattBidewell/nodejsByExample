@@ -1,0 +1,13 @@
+[{
+  "slug": "hello-world",
+  "title": "Hello World",
+  "dir": "helloWorld"
+},{
+  "slug": "test-runner",
+  "title": "Test Runner",
+  "dir": "test-runner"
+},{
+  "slug":"test-runner-cli",
+  "title": "Test Runner cli",
+  "dir": "test-runner-cli"
+}]
