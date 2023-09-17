@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "generate": "node ./tools/generate.js",
-    "dev": "node ./tools/app.js"
+    "dev": "node ./tools/server.js"
   },
   "type": "module",
   "repository": {
