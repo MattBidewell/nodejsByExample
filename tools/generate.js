@@ -24,70 +24,67 @@ function renderSinglePage(filePath, contents, filenameOverride) {
   fs.writeFileSync(htmlPath, html);
 }
 
-function renderCodePages() {
-
-  const dirs = fs.readdirSync(examplesDir, { withFileTypes: true }).filter(dirent => dirent.isDirectory())
-
-  for (const dir of dirs) {
-    const dirPath = path.join(examplesDir, dir.name);
-    const files = fs.readdirSync(dirPath, { withFileTypes: true }).filter(file => file.isFile())
-    const codeFile = files.find(file => file.name.endsWith(".js"));
-    const scriptFile = files.find(file => file.name.endsWith(".sh"));
-
-    if (!codeFile || !scriptFile) {
-      console.log(`Skipping ${dir.name} as it does not have a code or script file`);
-      break;
-    };
-
-    const content = {
-      name: dir.name,
-      code: fs.readFileSync(path.join(dirPath, codeFile.name), "utf8"),
-      script: fs.readFileSync(path.join(dirPath, scriptFile.name), "utf8"),
-    }
-
-    const contents = {code: [], script: []};
-    // read the code file and split it into sections
-    const codeSections = content.code.split("\n\n\n");
-
-    for (const section of codeSections) {
-      let comment = "";
-      let code = "";
-      const lines = section.split("\n");
-      for (const line of lines) {
-        if (line.startsWith("//")) {
-          comment += line.replace("//", "") + "\n";
-        } else {
-          code += line + "\n";
-        }
+function extractCode(sections, lang) {
+  const contents = [];
+  for (const section of sections) {
+    let comment = "";
+    let script = "";
+    const lines = section.split("\n");
+    for (const line of lines) {
+      if (line.startsWith("//")) {
+        comment += line.replace("//", "") + "\n";
+      } else {
+        script += line + "\n";
       }
-      contents.code.push({
-        comment,
-        code: hljs.highlight(code, { language: "javascript" }).value,
-      });
-
     }
-    // read the script file and split it into sections
-    const scriptSections = content.script.split("\n\n\n");
-    for (const section of scriptSections) {
-      let comment = "";
-      let script = "";
-      const lines = section.split("\n");
-      for (const line of lines) {
-        if (line.startsWith("//")) {
-          comment += line.replace("//", "") + "\n";
-        } else {
-          script += line + "\n";
-        }
-      }
-      contents.script.push({ // I think this is the wrong way round
-        comment,
-        code: hljs.highlight(script, { language: "shell", ignoreIllegals: true }).value,
-      });
-    }
-    renderSinglePage("content", { contents, title:dir.name } , dir.name);
+    contents.push({
+      comment,
+      code: hljs.highlight(script, { language: lang, ignoreIllegals: true }).value,
+    });
   }
+
+  return contents;
 }
 
-renderSinglePage("index", { title: "" });
+function renderSingleExamplePage(exampleMeta) {
+  const dirPath = path.join(examplesDir, exampleMeta.dir);
+  const files = fs.readdirSync(dirPath, { withFileTypes: true }).filter(file => file.isFile())
+  if (files.length === 0) {
+    console.log(`Skipping ${exampleMeta.dir} as it does not have any files`);
+    return;
+  }
+  const codeFile = files.find(file => file.name.endsWith(".js"));
+  const scriptFile = files.find(file => file.name.endsWith(".sh"));
 
-renderCodePages();
+  if (!codeFile || !scriptFile) {
+    console.log(`Skipping ${dir.name} as it does not have a code or script file`);
+    return;
+  };
+
+
+  const codeFileContents = fs.readFileSync(path.join(dirPath, codeFile.name), "utf8");
+  const scriptFileContents = fs.readFileSync(path.join(dirPath, scriptFile.name), "utf8");
+
+  const codeSections = codeFileContents.split("\n\n\n");
+  const scriptSections = scriptFileContents.split("\n\n\n");
+
+  const extractedCode = extractCode(codeSections, "javascript");
+  const extractedScript = extractCode(scriptSections, "shell");
+
+  renderSinglePage("content",
+    {
+      code: extractedCode,
+      script: extractedScript,
+      title: exampleMeta.title,
+    }, exampleMeta.slug);
+}
+
+const fileOfExamples = fs.readFileSync("./examples/examples.json", "utf8");
+const arrayOfExamples = JSON.parse(fileOfExamples);
+// based on array of Examples - build the site each one at the time, allows us to use consistent titles in content and main page
+
+renderSinglePage("index", { title: "", contents: arrayOfExamples });
+
+for (const example of arrayOfExamples) {
+  renderSingleExamplePage(example);
+}
