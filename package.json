@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "generate": "node ./tools/generate.js"
+    "generate": "node ./tools/generate.js",
+    "dev": "node ./tools/app.js"
   },
   "type": "module",
   "repository": {
@@ -22,5 +23,9 @@
   "dependencies": {
     "highlight.js": "^11.8.0",
     "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "@fastify/static": "^6.11.2",
+    "fastify": "^4.23.2"
   }
 }
