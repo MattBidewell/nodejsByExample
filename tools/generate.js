@@ -8,12 +8,13 @@ const templateDir = "./templates";
 const examplesDir = "./examples";
 
 function renderSinglePage(filePath, contents, filenameOverride) {
+  console.log(`Attempting to render ${filePath}/${filenameOverride ?? ""}`);
   if (!filePath.endsWith(".pug")) {
     filePath = filePath + ".pug";
   }
   const templatePath = path.join(templateDir, filePath);
   const template = fs.readFileSync(templatePath, "utf8");
-  const html = pug.render(template, { pretty: true, filename: templatePath, contents });
+  const html = pug.render(template, { pretty: true, filename: templatePath, data: contents  });
 
   if (filenameOverride) {
     filePath = `${filenameOverride}.pug`;
@@ -32,6 +33,11 @@ function renderCodePages() {
     const files = fs.readdirSync(dirPath, { withFileTypes: true }).filter(file => file.isFile())
     const codeFile = files.find(file => file.name.endsWith(".js"));
     const scriptFile = files.find(file => file.name.endsWith(".sh"));
+
+    if (!codeFile || !scriptFile) {
+      console.log(`Skipping ${dir.name} as it does not have a code or script file`);
+      break;
+    };
 
     const content = {
       name: dir.name,
@@ -78,10 +84,10 @@ function renderCodePages() {
         code: hljs.highlight(script, { language: "shell", ignoreIllegals: true }).value,
       });
     }
-    renderSinglePage("content", contents, dir.name);
+    renderSinglePage("content", { contents, title:dir.name } , dir.name);
   }
 }
 
-renderSinglePage("index");
+renderSinglePage("index", { title: "" });
 
 renderCodePages();
