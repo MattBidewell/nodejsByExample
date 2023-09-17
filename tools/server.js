@@ -15,6 +15,7 @@ const publicPath = path.join(__dirname, '../public');
 
 fastify.register(import('@fastify/static'), {
   root: publicPath,
+  extensions:['html']
 })
 
 try {
