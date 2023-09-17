@@ -29,7 +29,7 @@ test('failing test using Promises', (t) => {
 });
 
 
-//4 A Callback function that is called with a single argument. This test fails
+//4. A Callback function that is called with a single argument. This test fails
 test('callback failing test', (t, done) => {
   // When the setImmediate() runs,
   // done() is invoked with an Error object
