@@ -60,6 +60,3 @@ describe('test suite', () => {
     assert.strictEqual(1, 1);
   });
 });
-
-
-//7.
