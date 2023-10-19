@@ -48,6 +48,11 @@ function extractCode(sections, lang) {
 
 function renderSingleExamplePage(exampleMeta) {
   const dirPath = path.join(examplesDir, exampleMeta.dir);
+  const isDir = fs.existsSync(dirPath);
+  if (!isDir) {
+    console.log(`Skipping ${exampleMeta.dir} as it is not a directory`);
+    return;
+  };
   const files = fs.readdirSync(dirPath, { withFileTypes: true }).filter(file => file.isFile())
   if (files.length === 0) {
     console.log(`Skipping ${exampleMeta.dir} as it does not have any files`);
