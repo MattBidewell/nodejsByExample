@@ -88,7 +88,9 @@ const fileOfExamples = fs.readFileSync("./examples/examples.json", "utf8");
 const arrayOfExamples = JSON.parse(fileOfExamples);
 // based on array of Examples - build the site each one at the time, allows us to use consistent titles in content and main page
 
-renderSinglePage("index", { title: "", contents: arrayOfExamples });
+const filteredExamples = arrayOfExamples.filter((example) => fs.existsSync(path.join(examplesDir, example.dir)));
+
+renderSinglePage("index", { title: "", contents: filteredExamples });
 
 for (const example of arrayOfExamples) {
   renderSingleExamplePage(example);
