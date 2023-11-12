@@ -7,6 +7,11 @@
   "title": "Test Runner",
   "dir": "test-runner"
 },{
+  "slug": "test-mocking",
+  "title": "Mocking",
+  "dir": "test-mocking"
+},
+{
   "slug":"test-runner-cli",
   "title": "Test Runner cli",
   "dir": "test-runner-cli"
