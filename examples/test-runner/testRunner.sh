@@ -1,12 +1,14 @@
 // You can then run it from the command line
 $ node ./testRunner.js
-$ # Subtest: synchronous passing test
-$ # ok 1 - synchronous passing test
-$ # not ok 2 - synchronous failing test
-$ # ---
-$ # duration_ms: 0.823834
-$ # ...
-$ # tests 2
-$ # pass 1
-$ # fail 1
-$ # {...Other meta information}
+$ # ✔ Mocking (0.95775ms)
+$ # ✔ Mocking timers (1.198416ms)
+$ # (node:41925) ExperimentalWarning: The MockTimers API is an experimental feature and might change at any time
+$ # (Use `node --trace-warnings ...` to show where the warning was created)
+$ # ℹ tests 2
+$ # ℹ suites 0
+$ # ℹ pass 2
+$ # ℹ fail 0
+$ # ℹ cancelled 0
+$ # ℹ skipped 0
+$ # ℹ todo 0
+$ # ℹ duration_ms 6.377042
