@@ -53,45 +53,58 @@ function renderSingleExamplePage(exampleMeta) {
     console.log(`Skipping ${exampleMeta.dir} as it is not a directory`);
     return;
   };
-  const files = fs.readdirSync(dirPath, { withFileTypes: true }).filter(file => file.isFile())
-  if (files.length === 0) {
-    console.log(`Skipping ${exampleMeta.dir} as it does not have any files`);
-    return;
+
+  // collect subirs in numeric order
+  const subDirs = fs.readdirSync(dirPath, { withFileTypes: true }).filter(file => file.isDirectory()).sort((a, b) => parseInt(a.name) - parseInt(b.name));
+
+  const pageContents = [];
+
+  for (const subDir of subDirs) {
+    const files = fs.readdirSync(`${dirPath}/${subDir.name}`, { withFileTypes: true }).filter(file => file.isFile())
+
+    if (files.length === 0) {
+      console.log(`Skipping ${exampleMeta.dir}/${subDir.dir} as it does not have any files`);
+      continue;
+    }
+
+    const codeFile = files.find(file => file.name.endsWith(".js"));
+    const scriptFile = files.find(file => file.name.endsWith(".sh"));
+
+    if (!codeFile && !scriptFile) {
+      console.log(`Skipping ${exampleMeta.dir}/${subDir.dir} as it does not have a code or script file`);
+      continue;
+    };
+
+    const codeFileContents = fs.readFileSync(path.join(`${dirPath}/${subDir.name}`, codeFile.name), "utf8");
+    const scriptFileContents = fs.readFileSync(path.join(`${dirPath}/${subDir.name}`, scriptFile.name), "utf8");
+
+    const codeSections = codeFileContents.split("\n\n\n");
+    const scriptSections = scriptFileContents.split("\n\n\n");
+
+    pageContents.push({
+      code: extractCode(codeSections, "javascript"),
+      script: extractCode(scriptSections, "shell"),
+    });
   }
-  const codeFile = files.find(file => file.name.endsWith(".js"));
-  const scriptFile = files.find(file => file.name.endsWith(".sh"));
-
-  if (!codeFile || !scriptFile) {
-    console.log(`Skipping ${dir.name} as it does not have a code or script file`);
-    return;
-  };
-
-
-  const codeFileContents = fs.readFileSync(path.join(dirPath, codeFile.name), "utf8");
-  const scriptFileContents = fs.readFileSync(path.join(dirPath, scriptFile.name), "utf8");
-
-  const codeSections = codeFileContents.split("\n\n\n");
-  const scriptSections = scriptFileContents.split("\n\n\n");
-
-  const extractedCode = extractCode(codeSections, "javascript");
-  const extractedScript = extractCode(scriptSections, "shell");
 
   renderSinglePage("content",
     {
-      code: extractedCode,
-      script: extractedScript,
+      contents: pageContents,
       title: exampleMeta.title,
     }, exampleMeta.slug);
 }
 
-const fileOfExamples = fs.readFileSync("./examples/examples.json", "utf8");
-const arrayOfExamples = JSON.parse(fileOfExamples);
-// based on array of Examples - build the site each one at the time, allows us to use consistent titles in content and main page
+function buildSite() {
+  const contents = JSON.parse(fs.readFileSync("./examples/contents.json", "utf8"));
 
-const filteredExamples = arrayOfExamples.filter((example) => fs.existsSync(path.join(examplesDir, example.dir)));
+  // based on array of Examples - build the site each one at the time, allows us to use consistent titles in content and main page
+  const filteredExamples = contents.filter((example) => fs.existsSync(path.join(examplesDir, example.dir)));
 
-renderSinglePage("index", { title: "", contents: filteredExamples });
+  renderSinglePage("index", { title: "", contents: filteredExamples });
 
-for (const example of arrayOfExamples) {
-  renderSingleExamplePage(example);
+  for (const example of filteredExamples) {
+    renderSingleExamplePage(example);
+  }
 }
+
+buildSite();
