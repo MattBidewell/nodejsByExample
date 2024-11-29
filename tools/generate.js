@@ -75,11 +75,11 @@ function renderSingleExamplePage(exampleMeta) {
       continue;
     };
 
-    const codeFileContents = fs.readFileSync(path.join(`${dirPath}/${subDir.name}`, codeFile.name), "utf8");
-    const scriptFileContents = fs.readFileSync(path.join(`${dirPath}/${subDir.name}`, scriptFile.name), "utf8");
+    const codeFileContents = codeFile ? fs.readFileSync(path.join(`${dirPath}/${subDir.name}`, codeFile.name), "utf8") : null;
+    const scriptFileContents = scriptFile ? fs.readFileSync(path.join(`${dirPath}/${subDir.name}`, scriptFile.name), "utf8") : null;
 
-    const codeSections = codeFileContents.split("\n\n\n");
-    const scriptSections = scriptFileContents.split("\n\n\n");
+    const codeSections = codeFileContents ? codeFileContents.split("\n\n\n") : [];
+    const scriptSections = scriptFileContents ? scriptFileContents.split("\n\n\n") : [];
 
     pageContents.push({
       code: extractCode(codeSections, "javascript"),
