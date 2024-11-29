@@ -4,27 +4,28 @@ html
   body
     main
       include ./header.pug
-      table
-        each content in data.code
-          tr
-            if content.comment
-              td #[p!= content.comment]
-            else
-              td
-            if content.code
-              td #[pre #[code.hljs!= content.code]]
-            else
-              td
-      table
-        each content in data.script
-          tr
-            if content.comment
-              td #[p!= content.comment]
-            else
-              td
-            if content.code
-              td #[pre #[code.hljs!= content.code]]
-            else
-              td
+      each content in data.contents
+        table
+          each exampleCode in content.code
+            tr
+              if exampleCode.comment
+                td #[p!= exampleCode.comment]
+              else
+                td
+              if exampleCode.code
+                td #[pre #[code.hljs!= exampleCode.code]]
+              else
+                td
+        table
+          each exampleScript in content.script
+            tr
+              if exampleScript.comment
+                td #[p!= exampleScript.comment]
+              else
+                td
+              if exampleScript.code
+                td #[pre #[code.hljs!= exampleScript.code]]
+              else
+                td
 
       include ./footer.pug
