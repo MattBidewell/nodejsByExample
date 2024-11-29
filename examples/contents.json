@@ -3,6 +3,10 @@
   "title": "Hello World",
   "dir": "helloWorld"
 },{
+  "slug": "modern-js",
+  "title": "Modern JS",
+  "dir": "modern-js"
+},{
   "slug": "test-runner",
   "title": "Test Runner",
   "dir": "test-runner"
