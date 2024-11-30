@@ -18,7 +18,7 @@ This will generate the site in the `./public` folder and start a local server on
 
 # Contribution
 
-I'm open to contributions, raise an MR or an issue if you have any suggestions.
+I'm open to all contributions, please see [contribution guide](https://github.com/MattBidewell/nodejsByExample/blob/main/docs/contribution.md) for more information.
 
 # Thanks
 
