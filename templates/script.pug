@@ -1,0 +1,14 @@
+script.
+  // JavaScript for arrow key navigation
+  document.addEventListener('keydown', (event) => {
+    const urls = {
+      previous: '#{data.previous.slug}',
+      next: '#{data.next.slug}'
+    };
+
+    if (event.key === 'ArrowLeft') {
+      window.location.href = urls.previous;
+    } else if (event.key === 'ArrowRight') {
+      window.location.href = urls.next;
+    }
+  });

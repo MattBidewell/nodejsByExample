@@ -14,7 +14,11 @@ function renderSinglePage(filePath, contents, filenameOverride) {
   }
   const templatePath = path.join(templateDir, filePath);
   const template = fs.readFileSync(templatePath, "utf8");
-  const html = pug.render(template, { pretty: true, filename: templatePath, data: contents  });
+  const html = pug.render(template, {
+    pretty: true,
+    filename: templatePath,
+    data: contents
+  });
 
   if (filenameOverride) {
     filePath = `${filenameOverride}.pug`;
@@ -91,6 +95,8 @@ function renderSingleExamplePage(exampleMeta) {
     {
       contents: pageContents,
       title: exampleMeta.title,
+      next: exampleMeta.next,
+      previous: exampleMeta.previous,
     }, exampleMeta.slug);
 }
 
@@ -100,9 +106,21 @@ function buildSite() {
   // based on array of Examples - build the site each one at the time, allows us to use consistent titles in content and main page
   const filteredExamples = contents.filter((example) => fs.existsSync(path.join(examplesDir, example.dir)));
 
-  renderSinglePage("index", { title: "", contents: filteredExamples });
+  renderSinglePage("index", {
+    title: "",
+    contents: filteredExamples,
+    next: filteredExamples[0],
+    previous: {
+      slug: "/",
+      title: "Home"
+    }
+  });
 
-  for (const example of filteredExamples) {
+  for (const [index, data] of filteredExamples.entries()) {
+    const next = filteredExamples[index + 1] ?? { slug: "/" };
+    const previous = filteredExamples[index - 1] ?? { slug: "/" };
+    const example = {...data, next, previous};
+
     renderSingleExamplePage(example);
   }
 }
