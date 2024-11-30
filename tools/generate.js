@@ -110,10 +110,7 @@ function buildSite() {
     title: "",
     contents: filteredExamples,
     next: filteredExamples[0],
-    previous: {
-      slug: "/",
-      title: "Home"
-    }
+    previous: filteredExamples[filteredExamples.length - 1],
   });
 
   for (const [index, data] of filteredExamples.entries()) {
