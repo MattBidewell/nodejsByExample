@@ -1,5 +1,4 @@
 //<b>Callbacks</b> are functions that are passed as arguments to other functions and are executed after some operation has been completed.
-
 function fetchData(callback) {
   setTimeout(() => {
     callback("Data received!");

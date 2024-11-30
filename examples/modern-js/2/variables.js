@@ -3,5 +3,3 @@ const myImmutableVariable = 42;
 
 let myMutableVariable = 42;
 myMutableVariable = 43; // reassignable
-
-

@@ -1,5 +1,4 @@
 //<b>Functions</b> are blocks of code that can be called to perform a specific task. In JavaScript, functions are first-class objects, which means they can be passed around like any other value.
-
 function helloWorld() {
   console.log("Hello, World!");
 }
