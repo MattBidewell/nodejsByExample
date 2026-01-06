@@ -3,11 +3,16 @@ import path from "path";
 import pug from "pug";
 import hljs from 'highlight.js';
 
-const siteDir = "./public";
-const templateDir = "./templates";
-const examplesDir = "./examples";
+// Default configuration
+const defaultConfig = {
+  siteDir: "./public",
+  templateDir: "./templates",
+  examplesDir: "./examples",
+  contentsFile: "./examples/contents.json"
+};
 
-function renderSinglePage(filePath, contents, filenameOverride) {
+export function renderSinglePage(filePath, contents, filenameOverride, config = defaultConfig) {
+  const { siteDir, templateDir } = config;
   console.log(`Attempting to render ${filePath}/${filenameOverride ?? ""}`);
   if (!filePath.endsWith(".pug")) {
     filePath = filePath + ".pug";
@@ -28,7 +33,7 @@ function renderSinglePage(filePath, contents, filenameOverride) {
   fs.writeFileSync(htmlPath, html);
 }
 
-function extractCode(sections, lang) {
+export function extractCode(sections, lang) {
   const contents = [];
   for (const section of sections) {
     let comment = "";
@@ -50,7 +55,8 @@ function extractCode(sections, lang) {
   return contents;
 }
 
-function renderSingleExamplePage(exampleMeta) {
+export function renderSingleExamplePage(exampleMeta, config = defaultConfig) {
+  const { examplesDir } = config;
   const dirPath = path.join(examplesDir, exampleMeta.dir);
   const isDir = fs.existsSync(dirPath);
   if (!isDir) {
@@ -97,11 +103,14 @@ function renderSingleExamplePage(exampleMeta) {
       title: exampleMeta.title,
       next: exampleMeta.next,
       previous: exampleMeta.previous,
-    }, exampleMeta.slug);
+    }, exampleMeta.slug, config);
 }
 
-function buildSite() {
-  const contents = JSON.parse(fs.readFileSync("./examples/contents.json", "utf8"));
+export function buildSite(config = defaultConfig) {
+  const mergedConfig = { ...defaultConfig, ...config };
+  const { examplesDir, contentsFile } = mergedConfig;
+  
+  const contents = JSON.parse(fs.readFileSync(contentsFile, "utf8"));
 
   // based on array of Examples - build the site each one at the time, allows us to use consistent titles in content and main page
   const filteredExamples = contents.filter((example) => fs.existsSync(path.join(examplesDir, example.dir)));
@@ -111,15 +120,19 @@ function buildSite() {
     contents: filteredExamples,
     next: filteredExamples[0],
     previous: filteredExamples[filteredExamples.length - 1],
-  });
+  }, null, mergedConfig);
 
   for (const [index, data] of filteredExamples.entries()) {
     const next = filteredExamples[index + 1] ?? { slug: "/" };
     const previous = filteredExamples[index - 1] ?? { slug: "/" };
     const example = {...data, next, previous};
 
-    renderSingleExamplePage(example);
+    renderSingleExamplePage(example, mergedConfig);
   }
 }
 
-buildSite();
+// CLI entry point - only run when executed directly
+const isMainModule = import.meta.url === `file://${process.argv[1]}`;
+if (isMainModule) {
+  buildSite();
+}
