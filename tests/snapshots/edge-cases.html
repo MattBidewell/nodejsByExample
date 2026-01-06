@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <title>NodeJS by Example</title>
+  <link rel="stylesheet" href="./styles.css">
+  <body>
+    <main>
+      <h1><a href="./">NodeJS by Example: Edge Cases</a></h1>
+      <table>
+        <tr>
+          <td>
+            <p> Edge Case 1: Basic code with special characters
+ Testing special chars: <, >, &, ", '
+</p>
+          </td>
+          <td>
+            <pre><code class="hljs"><span class="hljs-keyword">const</span> specialChars = <span class="hljs-string">&#x27;&lt;div class=&quot;test&quot;&gt;&amp;amp;&lt;/div&gt;&#x27;</span>;
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(specialChars);
+
+</code></pre>
+          </td>
+        </tr>
+      </table>
+      <table>
+      </table>
+      <table>
+        <tr>
+          <td>
+            <p> Edge Case 3: Valid code after empty subdir
+ This should still render correctly
+</p>
+          </td>
+          <td>
+            <pre><code class="hljs"><span class="hljs-keyword">function</span> <span class="hljs-title function_">afterEmpty</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;Subdir 2 was empty but this works!&#x27;</span>;
+}
+</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p> Second section in subdir 3
+ Multiple sections work too
+</p>
+          </td>
+          <td>
+            <pre><code class="hljs"><span class="hljs-title function_">afterEmpty</span>();
+
+</code></pre>
+          </td>
+        </tr>
+      </table>
+      <table>
+      </table>
+      <p id="footer">Made by <a href="https://matty.dev">Matt Bidewell</a> | <a href="https://github.com/MattBidewell/nodejsByExample">source</a> | <a href="https://github.com/MattBidewell/nodejsByExample#license&quot;">license</a></p>
+      <script>
+        // JavaScript for arrow key navigation
+        document.addEventListener('keydown', (event) => {
+          const urls = {
+            previous: 'simple-example',
+            next: 'code-only'
+          };
+        
+          if (event.key === 'ArrowLeft') {
+            window.location.href = urls.previous;
+          } else if (event.key === 'ArrowRight') {
+            window.location.href = urls.next;
+          }
+        });
+      </script>
+    </main>
+  </body>
+</html>

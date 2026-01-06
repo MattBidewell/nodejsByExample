@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <title>NodeJS by Example</title>
+  <link rel="stylesheet" href="./styles.css">
+  <body>
+    <main>
+      <h1><a href="./">NodeJS by Example: Code Only</a></h1>
+      <table>
+        <tr>
+          <td>
+            <p> <b>Arrays</b> are ordered collections of values
+ They can hold any type of data
+</p>
+          </td>
+          <td>
+            <pre><code class="hljs"><span class="hljs-keyword">const</span> numbers = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];
+<span class="hljs-keyword">const</span> mixed = [<span class="hljs-string">&#x27;hello&#x27;</span>, <span class="hljs-number">42</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">null</span>];
+</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p> Array methods are powerful tools
+ map() transforms each element
+</p>
+          </td>
+          <td>
+            <pre><code class="hljs"><span class="hljs-keyword">const</span> doubled = numbers.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> n * <span class="hljs-number">2</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(doubled); <span class="hljs-comment">// [2, 4, 6, 8, 10]</span>
+</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p> filter() selects elements matching a condition
+</p>
+          </td>
+          <td>
+            <pre><code class="hljs"><span class="hljs-keyword">const</span> evens = numbers.<span class="hljs-title function_">filter</span>(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> n % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(evens); <span class="hljs-comment">// [2, 4]</span>
+</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p> reduce() combines elements into a single value
+</p>
+          </td>
+          <td>
+            <pre><code class="hljs"><span class="hljs-keyword">const</span> sum = numbers.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">acc, n</span>) =&gt;</span> acc + n, <span class="hljs-number">0</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(sum); <span class="hljs-comment">// 15</span>
+
+</code></pre>
+          </td>
+        </tr>
+      </table>
+      <table>
+      </table>
+      <table>
+        <tr>
+          <td>
+            <p> <b>Objects</b> store key-value pairs
+ Keys are strings (or Symbols), values can be anything
+</p>
+          </td>
+          <td>
+            <pre><code class="hljs"><span class="hljs-keyword">const</span> person = {
+  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Alice&#x27;</span>,
+  <span class="hljs-attr">age</span>: <span class="hljs-number">30</span>,
+  <span class="hljs-title function_">greet</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">`Hello, I&#x27;m <span class="hljs-subst">${<span class="hljs-variable language_">this</span>.name}</span>`</span>;
+  }
+};
+</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p> Accessing properties
+</p>
+          </td>
+          <td>
+            <pre><code class="hljs"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(person.<span class="hljs-property">name</span>);      <span class="hljs-comment">// Alice</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(person[<span class="hljs-string">&#x27;age&#x27;</span>]);    <span class="hljs-comment">// 30</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(person.<span class="hljs-title function_">greet</span>());   <span class="hljs-comment">// Hello, I&#x27;m Alice</span>
+</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p> Object destructuring extracts values
+</p>
+          </td>
+          <td>
+            <pre><code class="hljs"><span class="hljs-keyword">const</span> { name, age } = person;
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(name, age); <span class="hljs-comment">// Alice 30</span>
+</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p> Spread operator copies and merges objects
+</p>
+          </td>
+          <td>
+            <pre><code class="hljs"><span class="hljs-keyword">const</span> employee = {
+  ...person,
+  <span class="hljs-attr">role</span>: <span class="hljs-string">&#x27;Developer&#x27;</span>,
+  <span class="hljs-attr">salary</span>: <span class="hljs-number">100000</span>
+};
+
+</code></pre>
+          </td>
+        </tr>
+      </table>
+      <table>
+      </table>
+      <p id="footer">Made by <a href="https://matty.dev">Matt Bidewell</a> | <a href="https://github.com/MattBidewell/nodejsByExample">source</a> | <a href="https://github.com/MattBidewell/nodejsByExample#license&quot;">license</a></p>
+      <script>
+        // JavaScript for arrow key navigation
+        document.addEventListener('keydown', (event) => {
+          const urls = {
+            previous: 'edge-cases',
+            next: 'async-programming'
+          };
+        
+          if (event.key === 'ArrowLeft') {
+            window.location.href = urls.previous;
+          } else if (event.key === 'ArrowRight') {
+            window.location.href = urls.next;
+          }
+        });
+      </script>
+    </main>
+  </body>
+</html>

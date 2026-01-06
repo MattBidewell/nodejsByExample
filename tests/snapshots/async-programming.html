@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+  <title>NodeJS by Example</title>
+  <link rel="stylesheet" href="./styles.css">
+  <body>
+    <main>
+      <h1><a href="./">NodeJS by Example: Async Programming</a></h1>
+      <table>
+        <tr>
+          <td>
+            <p> <b>Async Programming</b> in JavaScript
+ JavaScript is single-threaded but handles async operations efficiently
+ using callbacks, promises, and async/await
+</p>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <p> <b>Callbacks</b> - The traditional approach
+ A callback is a function passed to another function
+</p>
+          </td>
+          <td>
+            <pre><code class="hljs"><span class="hljs-keyword">function</span> <span class="hljs-title function_">fetchData</span>(<span class="hljs-params">callback</span>) {
+  <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-title function_">callback</span>(<span class="hljs-literal">null</span>, { <span class="hljs-attr">id</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Data&#x27;</span> });
+  }, <span class="hljs-number">1000</span>);
+}
+</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p> Callback hell - nested callbacks become hard to read
+ This pattern is why Promises were introduced
+</p>
+          </td>
+          <td>
+            <pre><code class="hljs"><span class="hljs-title function_">fetchData</span>(<span class="hljs-function">(<span class="hljs-params">err, data</span>) =&gt;</span> {
+  <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">return</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(err);
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(data);
+  <span class="hljs-comment">// More nested callbacks would go here...</span>
+});
+</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p> <b>Promises</b> - A cleaner approach
+ Promises represent a value that may be available now, later, or never
+</p>
+          </td>
+          <td>
+            <pre><code class="hljs"><span class="hljs-keyword">const</span> promise = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
+  <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-title function_">resolve</span>({ <span class="hljs-attr">id</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Promise Data&#x27;</span> });
+  }, <span class="hljs-number">1000</span>);
+});
+</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p> Promise chaining eliminates callback hell
+</p>
+          </td>
+          <td>
+            <pre><code class="hljs">promise
+  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Received:&#x27;</span>, data);
+    <span class="hljs-keyword">return</span> data.<span class="hljs-property">id</span>;
+  })
+  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">id</span> =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;ID:&#x27;</span>, id);
+  })
+  .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;Error:&#x27;</span>, err);
+  });
+
+</code></pre>
+          </td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <td>
+            <p> Running async code
+</p>
+          </td>
+          <td>
+            <pre><code class="hljs"><span class="hljs-meta prompt_">$ </span><span class="language-bash">node async-basics.js</span>
+<span class="hljs-meta prompt_"># </span><span class="language-bash">{ <span class="hljs-built_in">id</span>: 1, name: <span class="hljs-string">&#x27;Data&#x27;</span> }</span>
+<span class="hljs-meta prompt_"># </span><span class="language-bash">Received: { <span class="hljs-built_in">id</span>: 2, name: <span class="hljs-string">&#x27;Promise Data&#x27;</span> }</span>
+<span class="hljs-meta prompt_"># </span><span class="language-bash">ID: 2</span>
+
+</code></pre>
+          </td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <td>
+            <p> <b>Async/Await</b> - Modern async syntax
+ async/await makes asynchronous code look synchronous
+</p>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <p> The async keyword marks a function as asynchronous
+ It always returns a Promise
+</p>
+          </td>
+          <td>
+            <pre><code class="hljs"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">getData</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">return</span> { <span class="hljs-attr">id</span>: <span class="hljs-number">3</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Async Data&#x27;</span> };
+}
+</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p> await pauses execution until the Promise resolves
+ It can only be used inside async functions
+</p>
+          </td>
+          <td>
+            <pre><code class="hljs"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">fetchUser</span>(<span class="hljs-params">id</span>) {
+  <span class="hljs-comment">// Simulating an API call</span>
+  <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> {
+    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-title function_">resolve</span>({ id, <span class="hljs-attr">name</span>: <span class="hljs-string">`User <span class="hljs-subst">${id}</span>`</span>, <span class="hljs-attr">email</span>: <span class="hljs-string">`user<span class="hljs-subst">${id}</span>@example.com`</span> });
+    }, <span class="hljs-number">500</span>);
+  });
+  <span class="hljs-keyword">return</span> response;
+}
+</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p> Error handling with try/catch
+ Much cleaner than .catch() chains
+</p>
+          </td>
+          <td>
+            <pre><code class="hljs"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">fetchWithErrorHandling</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">try</span> {
+    <span class="hljs-keyword">const</span> user = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetchUser</span>(<span class="hljs-number">1</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;User:&#x27;</span>, user);
+    
+    <span class="hljs-keyword">const</span> profile = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetchProfile</span>(user.<span class="hljs-property">id</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Profile:&#x27;</span>, profile);
+  } <span class="hljs-keyword">catch</span> (error) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;Failed to fetch:&#x27;</span>, error.<span class="hljs-property">message</span>);
+  }
+}
+</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p> Helper function for the example
+</p>
+          </td>
+          <td>
+            <pre><code class="hljs"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">fetchProfile</span>(<span class="hljs-params">userId</span>) {
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> {
+    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-title function_">resolve</span>({ userId, <span class="hljs-attr">bio</span>: <span class="hljs-string">&#x27;Developer&#x27;</span>, <span class="hljs-attr">joined</span>: <span class="hljs-string">&#x27;2023&#x27;</span> });
+    }, <span class="hljs-number">300</span>);
+  });
+}
+
+</code></pre>
+          </td>
+        </tr>
+      </table>
+      <table>
+      </table>
+      <table>
+        <tr>
+          <td>
+            <p> <b>Parallel Async Operations</b>
+ Running multiple async operations concurrently
+</p>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <p> Promise.all() waits for all promises to resolve
+ Great when operations are independent
+</p>
+          </td>
+          <td>
+            <pre><code class="hljs"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">fetchAllUsers</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> userIds = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];
+  
+  <span class="hljs-keyword">const</span> promises = userIds.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">id</span> =&gt;</span> 
+    <span class="hljs-title function_">fetchUser</span>(id)
+  );
+  
+  <span class="hljs-keyword">const</span> users = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">all</span>(promises);
+  <span class="hljs-keyword">return</span> users;
+}
+</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p> Promise.allSettled() never rejects
+ Returns status of each promise (fulfilled/rejected)
+</p>
+          </td>
+          <td>
+            <pre><code class="hljs"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">fetchWithStatus</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> promises = [
+    <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(<span class="hljs-string">&#x27;Success 1&#x27;</span>),
+    <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;Failed&#x27;</span>)),
+    <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(<span class="hljs-string">&#x27;Success 2&#x27;</span>)
+  ];
+  
+  <span class="hljs-keyword">const</span> results = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">allSettled</span>(promises);
+  results.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">result, i</span>) =&gt;</span> {
+    <span class="hljs-keyword">if</span> (result.<span class="hljs-property">status</span> === <span class="hljs-string">&#x27;fulfilled&#x27;</span>) {
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`Promise <span class="hljs-subst">${i}</span>: <span class="hljs-subst">${result.value}</span>`</span>);
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`Promise <span class="hljs-subst">${i}</span> failed: <span class="hljs-subst">${result.reason.message}</span>`</span>);
+    }
+  });
+}
+</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p> Promise.race() returns first settled promise
+ Useful for timeouts
+</p>
+          </td>
+          <td>
+            <pre><code class="hljs"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">fetchWithTimeout</span>(<span class="hljs-params">ms</span>) {
+  <span class="hljs-keyword">const</span> timeout = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">_, reject</span>) =&gt;</span> {
+    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;Timeout&#x27;</span>)), ms);
+  });
+  
+  <span class="hljs-keyword">const</span> data = <span class="hljs-title function_">fetchUser</span>(<span class="hljs-number">1</span>);
+  
+  <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">race</span>([data, timeout]);
+}
+</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p> Helper from previous example
+</p>
+          </td>
+          <td>
+            <pre><code class="hljs"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">fetchUser</span>(<span class="hljs-params">id</span>) {
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> {
+    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-title function_">resolve</span>({ id, <span class="hljs-attr">name</span>: <span class="hljs-string">`User <span class="hljs-subst">${id}</span>`</span> });
+    }, <span class="hljs-number">100</span>);
+  });
+}
+
+</code></pre>
+          </td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <td>
+            <p> Testing parallel operations
+</p>
+          </td>
+          <td>
+            <pre><code class="hljs"><span class="hljs-meta prompt_">$ </span><span class="language-bash">node parallel-async.js</span>
+<span class="hljs-meta prompt_"># </span><span class="language-bash">[{ <span class="hljs-built_in">id</span>: 1, name: <span class="hljs-string">&#x27;User 1&#x27;</span> }, { <span class="hljs-built_in">id</span>: 2, name: <span class="hljs-string">&#x27;User 2&#x27;</span> }, ...]</span>
+</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p> Promise.allSettled output
+</p>
+          </td>
+          <td>
+            <pre><code class="hljs"><span class="hljs-meta prompt_"># </span><span class="language-bash">Promise 0: Success 1</span>
+<span class="hljs-meta prompt_"># </span><span class="language-bash">Promise 1 failed: Failed</span>
+<span class="hljs-meta prompt_"># </span><span class="language-bash">Promise 2: Success 2</span>
+
+</code></pre>
+          </td>
+        </tr>
+      </table>
+      <p id="footer">Made by <a href="https://matty.dev">Matt Bidewell</a> | <a href="https://github.com/MattBidewell/nodejsByExample">source</a> | <a href="https://github.com/MattBidewell/nodejsByExample#license&quot;">license</a></p>
+      <script>
+        // JavaScript for arrow key navigation
+        document.addEventListener('keydown', (event) => {
+          const urls = {
+            previous: 'code-only',
+            next: '/'
+          };
+        
+          if (event.key === 'ArrowLeft') {
+            window.location.href = urls.previous;
+          } else if (event.key === 'ArrowRight') {
+            window.location.href = urls.next;
+          }
+        });
+      </script>
+    </main>
+  </body>
+</html>
