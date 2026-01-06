@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <title>NodeJS by Example</title>
+  <link rel="stylesheet" href="./styles.css">
+  <body>
+    <main>
+      <h1><a href="./">NodeJS by Example: Simple Example</a></h1>
+      <table>
+        <tr>
+          <td>
+            <p> This is a <b>simple</b> example demonstrating basic JavaScript
+</p>
+          </td>
+          <td>
+            <pre><code class="hljs"><span class="hljs-keyword">function</span> <span class="hljs-title function_">hello</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;Hello World!&#x27;</span>;
+}
+</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <pre><code class="hljs"><span class="hljs-title function_">hello</span>();
+
+</code></pre>
+          </td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <td>
+            <p> Run the example with Node.js
+</p>
+          </td>
+          <td>
+            <pre><code class="hljs"><span class="hljs-meta prompt_">$ </span><span class="language-bash">node example.js</span>
+<span class="hljs-meta prompt_"># </span><span class="language-bash">Hello World!</span>
+
+</code></pre>
+          </td>
+        </tr>
+      </table>
+      <p id="footer">Made by <a href="https://matty.dev">Matt Bidewell</a> | <a href="https://github.com/MattBidewell/nodejsByExample">source</a> | <a href="https://github.com/MattBidewell/nodejsByExample#license&quot;">license</a></p>
+      <script>
+        // JavaScript for arrow key navigation
+        document.addEventListener('keydown', (event) => {
+          const urls = {
+            previous: '/',
+            next: 'edge-cases'
+          };
+        
+          if (event.key === 'ArrowLeft') {
+            window.location.href = urls.previous;
+          } else if (event.key === 'ArrowRight') {
+            window.location.href = urls.next;
+          }
+        });
+      </script>
+    </main>
+  </body>
+</html>

@@ -130,3 +130,6 @@ dist
 .pnp.*
 
 public/*.html
+
+# Test output directory
+tests/.output/
