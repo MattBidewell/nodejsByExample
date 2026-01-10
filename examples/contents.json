@@ -1,22 +1,76 @@
-[{
-  "slug": "hello-world",
-  "title": "Hello World",
-  "dir": "helloWorld"
-},{
-  "slug": "modern-js",
-  "title": "Modern JS",
-  "dir": "modern-js"
-},{
-  "slug": "test-runner",
-  "title": "Test Runner",
-  "dir": "test-runner"
-},{
-  "slug": "test-mocking",
-  "title": "Mocking",
-  "dir": "test-mocking"
-},
 {
-  "slug":"test-runner-cli",
-  "title": "Test Runner cli",
-  "dir": "test-runner-cli"
-}]
+  "categories": [
+    {
+      "name": "Getting Started",
+      "items": [
+        { "slug": "hello-world", "title": "Hello World", "dir": "helloWorld" },
+        { "slug": "modern-js", "title": "Modern JS", "dir": "modern-js" },
+        { "slug": "esm-modules", "title": "ES Modules", "dir": "esm-modules" }
+      ]
+    },
+    {
+      "name": "Core Modules",
+      "items": [
+        { "slug": "file-system", "title": "File System", "dir": "file-system" },
+        { "slug": "path-module", "title": "Path Module", "dir": "path-module" },
+        { "slug": "util-module", "title": "Util Module", "dir": "util-module" },
+        { "slug": "os-module", "title": "OS Module", "dir": "os-module" },
+        { "slug": "read-streams", "title": "Read Streams", "dir": "read-streams" },
+        { "slug": "write-streams", "title": "Write Streams", "dir": "write-streams" },
+        { "slug": "pipelines", "title": "Pipelines", "dir": "pipelines" },
+        { "slug": "buffers", "title": "Buffers", "dir": "buffers" },
+        { "slug": "event-emitter", "title": "EventEmitter", "dir": "event-emitter" },
+        { "slug": "timers", "title": "Timers", "dir": "timers" }
+      ]
+    },
+    {
+      "name": "Networking",
+      "items": [
+        { "slug": "http-server", "title": "HTTP Server", "dir": "http-server" },
+        { "slug": "fetch-api", "title": "Fetch API", "dir": "fetch-api" },
+        { "slug": "url-parsing", "title": "URL Parsing", "dir": "url-parsing" },
+        { "slug": "websockets", "title": "WebSockets", "dir": "websockets" }
+      ]
+    },
+    {
+      "name": "Process & System",
+      "items": [
+        { "slug": "process-object", "title": "Process Object", "dir": "process-object" },
+        { "slug": "child-processes", "title": "Child Processes", "dir": "child-processes" },
+        { "slug": "worker-threads", "title": "Worker Threads", "dir": "worker-threads" }
+      ]
+    },
+    {
+      "name": "Security & Crypto",
+      "items": [
+        { "slug": "crypto", "title": "Crypto", "dir": "crypto" }
+      ]
+    },
+    {
+      "name": "Testing",
+      "items": [
+        { "slug": "test-runner", "title": "Test Runner", "dir": "test-runner" },
+        { "slug": "test-mocking", "title": "Mocking", "dir": "test-mocking" },
+        { "slug": "test-runner-cli", "title": "Test Runner CLI", "dir": "test-runner-cli" },
+        { "slug": "test-hooks", "title": "Test Hooks", "dir": "test-hooks" },
+        { "slug": "subtests", "title": "Subtests", "dir": "subtests" },
+        { "slug": "test-coverage", "title": "Test Coverage", "dir": "test-coverage" }
+      ]
+    },
+    {
+      "name": "Modern Features",
+      "items": [
+        { "slug": "watch-mode", "title": "Watch Mode", "dir": "watch-mode" },
+        { "slug": "sqlite", "title": "SQLite", "dir": "sqlite" }
+      ]
+    },
+    {
+      "name": "Debugging & Tooling",
+      "items": [
+        { "slug": "console-methods", "title": "Console Methods", "dir": "console-methods" },
+        { "slug": "debugging", "title": "Debugging", "dir": "debugging" },
+        { "slug": "error-handling", "title": "Error Handling", "dir": "error-handling" }
+      ]
+    }
+  ]
+}

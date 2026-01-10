@@ -7,8 +7,10 @@ html
       p #[a(href='https://nodejs.org/') NodeJS] is an open-source, cross-platform runtime environment that enables server-side execution of JavaScript code, making it ideal for building scalable and high-performance web applications. It uses an event-driven, non-blocking I/O model that allows for efficient handling of concurrent connections and asynchronous tasks.
       p #[em NodeJS by Example] is a hands-on introduction to NodeJS using annotated example programs. Check out the #[a(href="hello-world") first example] or browse the full list below.
       p Inspired by #[a(href="https://gobyexample.com/") Go by Example], #[a(href="https://www.cbyexample.com/") C by example], #[a(href="https://lotz84.github.io/haskellbyexample/", Haskell by Example)] and more.
-      ul
-        each content in data.contents
-          li #[a(href=content.slug) #{content.title}]
+      each category in data.categories
+        h3= category.name
+        ul
+          each content in category.items
+            li #[a(href=content.slug) #{content.title}]
 
     include ./footer.pug

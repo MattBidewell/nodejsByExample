@@ -112,12 +112,25 @@ export function buildSite(config = defaultConfig) {
   
   const contents = JSON.parse(fs.readFileSync(contentsFile, "utf8"));
 
-  // based on array of Examples - build the site each one at the time, allows us to use consistent titles in content and main page
-  const filteredExamples = contents.filter((example) => fs.existsSync(path.join(examplesDir, example.dir)));
+  // Flatten all tutorials from categories for processing
+  const allTutorials = contents.categories.flatMap(cat => cat.items);
+
+  // Filter to only existing directories
+  const filteredExamples = allTutorials.filter((example) => 
+    fs.existsSync(path.join(examplesDir, example.dir))
+  );
+
+  // Filter categories to only include existing tutorials
+  const filteredCategories = contents.categories.map(cat => ({
+    name: cat.name,
+    items: cat.items.filter(item => 
+      fs.existsSync(path.join(examplesDir, item.dir))
+    )
+  })).filter(cat => cat.items.length > 0);
 
   renderSinglePage("index", {
     title: "",
-    contents: filteredExamples,
+    categories: filteredCategories,
     next: filteredExamples[0],
     previous: filteredExamples[filteredExamples.length - 1],
   }, null, mergedConfig);

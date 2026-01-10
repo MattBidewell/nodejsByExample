@@ -1,17 +1,18 @@
-[{
-  "slug": "simple-example",
-  "title": "Simple Example",
-  "dir": "simple-example"
-},{
-  "slug": "edge-cases",
-  "title": "Edge Cases",
-  "dir": "edge-cases"
-},{
-  "slug": "code-only",
-  "title": "Code Only",
-  "dir": "code-only"
-},{
-  "slug": "async-programming",
-  "title": "Async Programming",
-  "dir": "many-sections"
-}]
+{
+  "categories": [
+    {
+      "name": "Getting Started",
+      "items": [
+        { "slug": "simple-example", "title": "Simple Example", "dir": "simple-example" },
+        { "slug": "edge-cases", "title": "Edge Cases", "dir": "edge-cases" }
+      ]
+    },
+    {
+      "name": "Advanced",
+      "items": [
+        { "slug": "code-only", "title": "Code Only", "dir": "code-only" },
+        { "slug": "async-programming", "title": "Async Programming", "dir": "many-sections" }
+      ]
+    }
+  ]
+}
