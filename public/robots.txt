@@ -1,0 +1,8 @@
+# robots.txt for Node.js by Example
+# https://nodejsbyexample.com
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://nodejsbyexample.com/sitemap.xml

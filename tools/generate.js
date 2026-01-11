@@ -101,9 +101,42 @@ export function renderSingleExamplePage(exampleMeta, config = defaultConfig) {
     {
       contents: pageContents,
       title: exampleMeta.title,
+      slug: exampleMeta.slug,
+      description: exampleMeta.description,
       next: exampleMeta.next,
       previous: exampleMeta.previous,
     }, exampleMeta.slug, config);
+}
+
+export function generateSitemap(examples, config = defaultConfig) {
+  const { siteDir } = config;
+  const baseUrl = "https://nodejsbyexample.com";
+  const today = new Date().toISOString().split('T')[0];
+  
+  let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>${baseUrl}/</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+`;
+
+  for (const example of examples) {
+    sitemap += `  <url>
+    <loc>${baseUrl}/${example.slug}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+`;
+  }
+
+  sitemap += `</urlset>`;
+  
+  fs.writeFileSync(path.join(siteDir, "sitemap.xml"), sitemap);
+  console.log("Generated sitemap.xml");
 }
 
 export function buildSite(config = defaultConfig) {
@@ -130,10 +163,15 @@ export function buildSite(config = defaultConfig) {
 
   renderSinglePage("index", {
     title: "",
+    slug: "",
+    description: "Learn Node.js through hands-on annotated code examples. A comprehensive tutorial covering core modules, networking, testing, and modern Node.js features.",
     categories: filteredCategories,
     next: filteredExamples[0],
     previous: filteredExamples[filteredExamples.length - 1],
   }, null, mergedConfig);
+
+  // Generate sitemap.xml for SEO
+  generateSitemap(filteredExamples, mergedConfig);
 
   for (const [index, data] of filteredExamples.entries()) {
     const next = filteredExamples[index + 1] ?? { slug: "/" };

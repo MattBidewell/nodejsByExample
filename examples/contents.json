@@ -3,73 +3,73 @@
     {
       "name": "Getting Started",
       "items": [
-        { "slug": "hello-world", "title": "Hello World", "dir": "helloWorld" },
-        { "slug": "modern-js", "title": "Modern JS", "dir": "modern-js" },
-        { "slug": "esm-modules", "title": "ES Modules", "dir": "esm-modules" }
+        { "slug": "hello-world", "title": "Hello World", "dir": "helloWorld", "description": "Learn how to write your first Node.js program with a simple Hello World example. Perfect for beginners starting with Node.js." },
+        { "slug": "modern-js", "title": "Modern JS", "dir": "modern-js", "description": "Explore modern JavaScript features in Node.js including arrow functions, destructuring, template literals, and async/await." },
+        { "slug": "esm-modules", "title": "ES Modules", "dir": "esm-modules", "description": "Learn how to use ES Modules (import/export) in Node.js for modern, standards-compliant module management." }
       ]
     },
     {
       "name": "Core Modules",
       "items": [
-        { "slug": "file-system", "title": "File System", "dir": "file-system" },
-        { "slug": "path-module", "title": "Path Module", "dir": "path-module" },
-        { "slug": "util-module", "title": "Util Module", "dir": "util-module" },
-        { "slug": "os-module", "title": "OS Module", "dir": "os-module" },
-        { "slug": "read-streams", "title": "Read Streams", "dir": "read-streams" },
-        { "slug": "write-streams", "title": "Write Streams", "dir": "write-streams" },
-        { "slug": "pipelines", "title": "Pipelines", "dir": "pipelines" },
-        { "slug": "buffers", "title": "Buffers", "dir": "buffers" },
-        { "slug": "event-emitter", "title": "EventEmitter", "dir": "event-emitter" },
-        { "slug": "timers", "title": "Timers", "dir": "timers" }
+        { "slug": "file-system", "title": "File System", "dir": "file-system", "description": "Master Node.js file system operations including reading, writing, and managing files and directories with the fs module." },
+        { "slug": "path-module", "title": "Path Module", "dir": "path-module", "description": "Learn to work with file and directory paths in Node.js using the path module for cross-platform compatibility." },
+        { "slug": "util-module", "title": "Util Module", "dir": "util-module", "description": "Explore Node.js utility functions including promisify, format, inspect, and other helpful utilities." },
+        { "slug": "os-module", "title": "OS Module", "dir": "os-module", "description": "Access operating system information in Node.js including CPU, memory, network interfaces, and platform details." },
+        { "slug": "read-streams", "title": "Read Streams", "dir": "read-streams", "description": "Learn to efficiently read large files and data sources using Node.js readable streams for memory-efficient processing." },
+        { "slug": "write-streams", "title": "Write Streams", "dir": "write-streams", "description": "Master writing data efficiently in Node.js using writable streams for handling large outputs and file operations." },
+        { "slug": "pipelines", "title": "Pipelines", "dir": "pipelines", "description": "Connect streams together in Node.js using pipelines for efficient data transformation and processing workflows." },
+        { "slug": "buffers", "title": "Buffers", "dir": "buffers", "description": "Work with binary data in Node.js using Buffers for handling raw bytes, encoding, and low-level data manipulation." },
+        { "slug": "event-emitter", "title": "EventEmitter", "dir": "event-emitter", "description": "Learn the EventEmitter pattern in Node.js for building event-driven applications with custom events and listeners." },
+        { "slug": "timers", "title": "Timers", "dir": "timers", "description": "Schedule code execution in Node.js using setTimeout, setInterval, setImmediate, and process.nextTick." }
       ]
     },
     {
       "name": "Networking",
       "items": [
-        { "slug": "http-server", "title": "HTTP Server", "dir": "http-server" },
-        { "slug": "fetch-api", "title": "Fetch API", "dir": "fetch-api" },
-        { "slug": "url-parsing", "title": "URL Parsing", "dir": "url-parsing" },
-        { "slug": "websockets", "title": "WebSockets", "dir": "websockets" }
+        { "slug": "http-server", "title": "HTTP Server", "dir": "http-server", "description": "Build HTTP servers in Node.js from scratch. Learn to handle requests, responses, routing, and serve web content." },
+        { "slug": "fetch-api", "title": "Fetch API", "dir": "fetch-api", "description": "Make HTTP requests in Node.js using the built-in Fetch API for consuming REST APIs and web services." },
+        { "slug": "url-parsing", "title": "URL Parsing", "dir": "url-parsing", "description": "Parse and construct URLs in Node.js using the URL and URLSearchParams APIs for handling web addresses." },
+        { "slug": "websockets", "title": "WebSockets", "dir": "websockets", "description": "Build real-time applications in Node.js using WebSockets for bidirectional communication between server and clients." }
       ]
     },
     {
       "name": "Process & System",
       "items": [
-        { "slug": "process-object", "title": "Process Object", "dir": "process-object" },
-        { "slug": "child-processes", "title": "Child Processes", "dir": "child-processes" },
-        { "slug": "worker-threads", "title": "Worker Threads", "dir": "worker-threads" }
+        { "slug": "process-object", "title": "Process Object", "dir": "process-object", "description": "Access Node.js process information including environment variables, command-line arguments, and process lifecycle." },
+        { "slug": "child-processes", "title": "Child Processes", "dir": "child-processes", "description": "Execute shell commands and spawn processes in Node.js using exec, spawn, and fork for system integration." },
+        { "slug": "worker-threads", "title": "Worker Threads", "dir": "worker-threads", "description": "Run CPU-intensive tasks in parallel using Node.js Worker Threads for true multi-threaded JavaScript execution." }
       ]
     },
     {
       "name": "Security & Crypto",
       "items": [
-        { "slug": "crypto", "title": "Crypto", "dir": "crypto" }
+        { "slug": "crypto", "title": "Crypto", "dir": "crypto", "description": "Implement cryptographic operations in Node.js including hashing, encryption, decryption, and secure random generation." }
       ]
     },
     {
       "name": "Testing",
       "items": [
-        { "slug": "test-runner", "title": "Test Runner", "dir": "test-runner" },
-        { "slug": "test-mocking", "title": "Mocking", "dir": "test-mocking" },
-        { "slug": "test-runner-cli", "title": "Test Runner CLI", "dir": "test-runner-cli" },
-        { "slug": "test-hooks", "title": "Test Hooks", "dir": "test-hooks" },
-        { "slug": "subtests", "title": "Subtests", "dir": "subtests" },
-        { "slug": "test-coverage", "title": "Test Coverage", "dir": "test-coverage" }
+        { "slug": "test-runner", "title": "Test Runner", "dir": "test-runner", "description": "Write and run tests using Node.js built-in test runner without external dependencies like Jest or Mocha." },
+        { "slug": "test-mocking", "title": "Mocking", "dir": "test-mocking", "description": "Create mocks and spies in Node.js tests using the built-in mocking capabilities for isolating units under test." },
+        { "slug": "test-runner-cli", "title": "Test Runner CLI", "dir": "test-runner-cli", "description": "Master the Node.js test runner command-line interface for running tests, filtering, and configuring test execution." },
+        { "slug": "test-hooks", "title": "Test Hooks", "dir": "test-hooks", "description": "Use setup and teardown hooks in Node.js tests with before, after, beforeEach, and afterEach for test organization." },
+        { "slug": "subtests", "title": "Subtests", "dir": "subtests", "description": "Organize tests hierarchically in Node.js using subtests and describe blocks for better test structure." },
+        { "slug": "test-coverage", "title": "Test Coverage", "dir": "test-coverage", "description": "Measure code coverage in Node.js using the built-in coverage reporting to ensure comprehensive test coverage." }
       ]
     },
     {
       "name": "Modern Features",
       "items": [
-        { "slug": "watch-mode", "title": "Watch Mode", "dir": "watch-mode" },
-        { "slug": "sqlite", "title": "SQLite", "dir": "sqlite" }
+        { "slug": "watch-mode", "title": "Watch Mode", "dir": "watch-mode", "description": "Automatically restart Node.js applications on file changes using the built-in watch mode for faster development." },
+        { "slug": "sqlite", "title": "SQLite", "dir": "sqlite", "description": "Use SQLite databases directly in Node.js with the built-in SQLite module for embedded database applications." }
       ]
     },
     {
       "name": "Debugging & Tooling",
       "items": [
-        { "slug": "console-methods", "title": "Console Methods", "dir": "console-methods" },
-        { "slug": "debugging", "title": "Debugging", "dir": "debugging" },
-        { "slug": "error-handling", "title": "Error Handling", "dir": "error-handling" }
+        { "slug": "console-methods", "title": "Console Methods", "dir": "console-methods", "description": "Master Node.js console methods beyond console.log including table, time, trace, and other debugging utilities." },
+        { "slug": "debugging", "title": "Debugging", "dir": "debugging", "description": "Debug Node.js applications using the built-in debugger, Chrome DevTools, and VS Code for finding and fixing bugs." },
+        { "slug": "error-handling", "title": "Error Handling", "dir": "error-handling", "description": "Handle errors properly in Node.js using try/catch, error events, and best practices for robust applications." }
       ]
     }
   ]

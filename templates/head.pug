@@ -1,2 +1,56 @@
-title NodeJS by Example
+meta(charset='utf-8')
+meta(name='viewport', content='width=device-width, initial-scale=1')
+
+//- Dynamic title
+if data.title
+  title #{data.title} - Node.js by Example
+else
+  title Node.js by Example - Learn Node.js with Annotated Code Examples
+
+//- Meta description
+if data.description
+  meta(name='description', content=data.description)
+else
+  meta(name='description', content='Learn Node.js through hands-on annotated code examples. A comprehensive tutorial covering core modules, networking, testing, and modern Node.js features.')
+
+//- Keywords
+meta(name='keywords', content='Node.js, NodeJS, JavaScript, tutorial, examples, learn nodejs, node tutorial, javascript backend, server-side javascript')
+
+//- Author
+meta(name='author', content='Node.js by Example')
+
+//- Open Graph tags for social sharing
+meta(property='og:type', content='website')
+meta(property='og:site_name', content='Node.js by Example')
+if data.title
+  meta(property='og:title', content=`${data.title} - Node.js by Example`)
+else
+  meta(property='og:title', content='Node.js by Example - Learn Node.js with Annotated Code Examples')
+if data.description
+  meta(property='og:description', content=data.description)
+else
+  meta(property='og:description', content='Learn Node.js through hands-on annotated code examples. A comprehensive tutorial covering core modules, networking, testing, and modern Node.js features.')
+if data.slug
+  meta(property='og:url', content=`https://nodejsbyexample.com/${data.slug}`)
+else
+  meta(property='og:url', content='https://nodejsbyexample.com/')
+
+//- Twitter Card tags
+meta(name='twitter:card', content='summary')
+if data.title
+  meta(name='twitter:title', content=`${data.title} - Node.js by Example`)
+else
+  meta(name='twitter:title', content='Node.js by Example - Learn Node.js with Annotated Code Examples')
+if data.description
+  meta(name='twitter:description', content=data.description)
+else
+  meta(name='twitter:description', content='Learn Node.js through hands-on annotated code examples. A comprehensive tutorial covering core modules, networking, testing, and modern Node.js features.')
+
+//- Canonical URL
+if data.slug
+  link(rel='canonical', href=`https://nodejsbyexample.com/${data.slug}`)
+else
+  link(rel='canonical', href='https://nodejsbyexample.com/')
+
+//- Stylesheet
 link(rel='stylesheet', href='./styles.css')
