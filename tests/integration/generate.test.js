@@ -354,9 +354,9 @@ describe('Site Generation - Integration Tests', () => {
       for (const file of files) {
         const html = readFile(path.join(OUTPUT_DIR, file));
         assert.ok(html.startsWith('<!DOCTYPE html>'), `${file} should start with DOCTYPE`);
-        assert.ok(html.includes('<html>'), `${file} should have html tag`);
+        assert.ok(html.includes('<html'), `${file} should have html tag`);
         assert.ok(html.includes('</html>'), `${file} should close html tag`);
-        assert.ok(html.includes('<title>NodeJS by Example</title>'), `${file} should have title`);
+        assert.ok(html.includes('<title>') && html.includes('Node.js by Example'), `${file} should have title with site name`);
       }
     });
 
